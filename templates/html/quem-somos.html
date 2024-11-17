@@ -3,51 +3,87 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/quem-somos.css') }}" />
     <title>Quem Somos</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
 </head>
-<body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="logo" />
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="flex items-center">
+                <img src="{{ url_for('static', filename='imagens/logo.png') }}" 
+                    alt="logo" 
+                    class="h-14 w-auto transition-transform duration-200 hover:scale-105" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            
+            <nav class="hidden md:flex space-x-4">
+                <a href="{{ url_for('home') }}" 
+                    class="text-gray-800 hover:text-blue-600 transition duration-300"
+                    title="Página Inicial">Home</a>
+                <a href="{{ url_for('quem_somos') }}" 
+                    class="text-gray-800 hover:text-blue-600 transition duration-300"
+                    title="Sobre nossa instituição">Quem Somos</a>
+                <a href="{{ url_for('contato') }}" 
+                    class="text-gray-800 hover:text-blue-600 transition duration-300"
+                    title="Entre em contato">Contato</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                 <nav class="navbar-nav ms-auto">
-                    <a class="nav-link" href="{{ url_for('home') }}" data-bs-toggle="tooltip" title="Página Inicial">Home</a>
-                    <a class="nav-link" href="{{ url_for('quem_somos') }}" data-bs-toggle="tooltip" title="Sobre nossa instituição">Quem somos</a>
-                    <a class="nav-link" href="{{ url_for('contato') }}" data-bs-toggle="tooltip" title="Entre em contato">Contato</a>
-                </nav>
-            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <nav class="px-2 pt-2 pb-4 space-y-2">
+                <a href="{{ url_for('home') }}" 
+                    class="block text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">Home</a>
+                <a href="{{ url_for('quem_somos') }}" 
+                    class="block text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">Quem Somos</a>
+                <a href="{{ url_for('contato') }}" 
+                    class="block text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">Contato</a>
+            </nav>
         </div>
     </header>
 
-    <main class="container my-5">
-        <h1 class="mb-4">Quem Somos</h1>
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold mb-6 text-blue-600 text-center relative">
+            Quem Somos
+            <span class="block h-1 w-24 bg-blue-600 absolute bottom-[-10px] left-1/2 transform -translate-x-1/2"></span>
+        </h1>
         
-        <section class="mb-5">
-            <h2>Descrição Institucional</h2>
-            <p>A nossa universidade é uma instituição de ensino superior moderna e inovadora, dedicada a preparar profissionais para os desafios do mercado digital contemporâneo. Com uma abordagem centrada no aluno, oferecemos um ambiente de aprendizado estimulante, onde a teoria se encontra com a prática.</p>
+        <section class="mb-8 bg-white p-6 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Descrição Institucional</h2>
+            <p class="text-gray-600 leading-relaxed">
+                A nossa universidade é uma instituição de ensino superior moderna e inovadora, dedicada a preparar profissionais para os desafios do mercado digital contemporâneo. Com uma abordagem centrada no aluno, oferecemos um ambiente de aprendizado estimulante, onde a teoria se encontra com a prática.
+            </p>
         </section>
 
-        <section class="mb-5">
-            <h2>Missão</h2>
-            <p>Formar profissionais capacitados, críticos e criativos, prontos para transformar ideias em soluções impactantes nos campos de tecnologia, design e marketing digital. Acreditamos que a educação deve ser um motor de mudança e inovação.</p>
+        <section class="mb-8 bg-white p-6 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Missão</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Formar profissionais capacitados, críticos e criativos, prontos para transformar ideias em soluções impactantes nos campos de tecnologia, design e marketing digital. Acreditamos que a educação deve ser um motor de mudança e inovação.
+            </p>
         </section>
 
-        <section class="mb-5">
-            <h2>Visão</h2>
-            <p>Ser reconhecida como uma referência nacional na formação de profissionais inovadores, conectados com as tendências globais e comprometidos com a excelência. Buscamos constantemente a melhoria de nossos programas acadêmicos.</p>
+        <section class="mb-8 bg-white p-6 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Visão</h2>
+            <p class="text-gray-600 leading-relaxed">
+                Ser reconhecida como uma referência nacional na formação de profissionais inovadores, conectados com as tendências globais e comprometidos com a excelência. Buscamos constantemente a melhoria de nossos programas acadêmicos.
+            </p>
         </section>
 
-        <section class="mb-5">
-            <h2>Valores</h2>
-            <ul>
+        <section class="mb-8 bg-white p-6 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Valores</h2>
+            <ul class="list-disc list-inside text-gray-600 space-y-2">
                 <li>Inovação constante</li>
                 <li>Criatividade como diferencial</li>
                 <li>Formação prática e aplicada</li>
@@ -56,17 +92,17 @@
             </ul>
         </section>
 
-        <section>
-            <h2>Diferenciais</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <ul>
+        <section class="bg-white p-6 rounded-lg shadow-md transition-transform duration-300 hover:shadow-lg hover:-translate-y-1">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Diferenciais</h2>
+            <div class="grid md:grid-cols-2 gap-4">
+                <div>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
                         <li>Cursos alinhados com o mercado</li>
                         <li>Infraestrutura tecnológica moderna</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
-                    <ul>
+                <div>
+                    <ul class="list-disc list-inside text-gray-600 space-y-2">
                         <li>Corpo docente qualificado</li>
                         <li>Metodologias de ensino dinâmicas</li>
                         <li>Foco em desenvolvimento de competências práticas</li>
@@ -76,18 +112,17 @@
         </section>
     </main>
 
-    <footer class="footer bg-light text-center py-3">
-        <div class="container">
-            <p class="mb-0"><strong>Todos os direitos reservados</strong></p>
+    <footer class="bg-white shadow-md py-4">
+        <div class="container mx-auto text-center">
+            <p class="text-gray-600"><strong>Todos os direitos reservados</strong></p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
     </script>
 </body>
 </html>

@@ -3,109 +3,242 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Página Inicial</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Descrição do seu site ou página">
+    <meta name="keywords" content="cursos, tecnologia, design, marketing">
+    
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <!-- Folha de estilo personalizada -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
-    <title>Home</title>
+    
+    <!-- Ícone do site (opcional) -->
+    <link rel="icon" href="{{ url_for('static', filename='imagens/favicon.ico') }}" type="image/x-icon">
 </head>
-<body>
-    <header class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="logo" />
+<body class="bg-gray-100">
+    <!-- Cabeçalho -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="flex items-center">
+                <img src="{{ url_for('static', filename='imagens/logo.png') }}" 
+                    alt="logo" 
+                    class="h-14 w-auto transition-transform duration-200 hover:scale-105" />
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+            
+            <nav class="hidden md:flex space-x-4">
+                <a href="{{ url_for('home') }}" 
+                    class="text-gray-800 hover:text-blue-600 transition duration-300"
+                    title="Página Inicial">Home</a>
+                <a href="{{ url_for('quem_somos') }}" 
+                    class="text-gray-800 hover:text-blue-600 transition duration-300"
+                    title="Sobre nossa instituição">Quem Somos</a>
+                <a href="{{ url_for('contato') }}" 
+                    class="text-gray-800 hover:text-blue-600 transition duration-300"
+                    title="Entre em contato">Contato</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <nav class="navbar-nav ms-auto">
-                    <a class="nav-link" href="{{ url_for('home') }}" data-bs-toggle="tooltip" title="Página Inicial">Home</a>
-                    <a class="nav-link" href="{{ url_for('quem_somos') }}" data-bs-toggle="tooltip" title="Sobre nossa instituição">Quem somos</a>
-                    <a class="nav-link" href="{{ url_for('contato') }}" data-bs-toggle="tooltip" title="Entre em contato">Contato</a>
-                </nav>
-            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white">
+            <nav class="px-2 pt-2 pb-4 space-y-2">
+                <a href="{{ url_for('home') }}" 
+                    class="block text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">Home</a>
+                <a href="{{ url_for('quem_somos') }}" 
+                    class="block text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">Quem Somos</a>
+                <a href="{{ url_for('contato') }}" 
+                    class="block text-gray-800 hover:bg-gray-200 px-3 py-2 rounded">Contato</a>
+            </nav>
         </div>
     </header>
 
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1"></button>
-            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2"></button>
-        </div>
+    <!-- Carrossel Principal -->
+    <div id="mainCarousel" class="relative w-full overflow-hidden">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="{{ url_for('static', filename='imagens/curso-tecnologia.jpg') }}" class="d-block w-100" alt="Slide 1">
+                <img src="{{ url_for('static', filename='imagens/curso-tecnologia.jpg') }}" 
+                    class="block w-full object-cover h-96" 
+                    alt="Curso de Tecnologia">
             </div>
             <div class="carousel-item">
-                <img src="{{ url_for('static', filename='imagens/curso-design.jpg') }}" class="d-block w-100" alt="Slide 2">
+                <img src="{{ url_for('static', filename='imagens/curso-design.jpg') }}" 
+                    class="block w-full object-cover h-96" 
+                    alt="Curso de Design">
             </div>
             <div class="carousel-item">
-                <img src="{{ url_for('static', filename='imagens/curso-de-marketing.jpg') }}" class="d-block w-100" alt="Slide 3">
+                <img src="{{ url_for('static', filename='imagens/curso-de-marketing.jpg') }}" 
+                    class="block w-full object-cover h-96" 
+                    alt="Curso de Marketing">
             </div>
+        </div>
+    
+        <!-- Botões de Navegação -->
+        <button id="prevSlide" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full">
+            &#10094;
+        </button>
+        <button id="nextSlide" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 p-2 rounded-full">
+            &#10095;
+        </button>
+    
+        <!-- Indicadores -->
+        <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            <span class="carousel-indicator w-3 h-3 bg-white rounded-full cursor-pointer opacity-50" data-slide="0"></span>
+            <span class="carousel-indicator w-3 h-3 bg-white rounded-full cursor-pointer opacity-50" data-slide="1"></span>
+            <span class="carousel-indicator w-3 h-3 bg-white rounded-full cursor-pointer opacity-50" data-slide="2"></span>
         </div>
     </div>
 
-    <main class="container my-5">
-        <div class="row">
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='imagens/curso-tecnologia.jpg') }}" class="card-img-top" alt="Curso 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Tecnologia</h5>
-                        <p class="card-text">Descrição do curso de tecnologia.</p>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cursoModal">Saiba Mais</button>
-                    </div>
+    <!-- Conteúdo Principal -->
+    <main class="container mx-auto my-8 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Curso 1 -->
+            <div class="card bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="{{ url_for('static', filename='imagens/curso-tecnologia.jpg') }}" 
+                    class="card-img-top w-full h-64 object-cover" 
+                    alt="Curso de Tecnologia">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Curso de Tecnologia</h3>
+                    <p class="text-gray-600 mb-4">Descrição completa do curso de tecnologia.</p>
+                    <button onclick="openModal('Curso de Tecnologia', 'Detalhes completos do curso de tecnologia.')" 
+                            class="btn-primary bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                        Saiba Mais
+                    </button>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='imagens/curso-design.jpg') }}" class="card-img-top" alt="Curso 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Design</h5>
-                        <p class="card-text">Descrição do curso de design.</p>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cursoModal">Saiba Mais</button>
-                    </div>
+
+            <!-- Curso 2 -->
+            <div class="card bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="{{ url_for('static', filename='imagens/curso-design.jpg') }}" 
+                    class="card-img-top w-full h-64 object-cover" 
+                    alt ="Curso de Design">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Curso de Design</h3>
+                    <p class="text-gray-600 mb-4">Descrição completa do curso de design.</p>
+                    <button onclick="openModal('Curso de Design', 'Detalhes completos do curso de design.')" 
+                            class="btn-primary bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                        Saiba Mais
+                    </button>
                 </div>
             </div>
-            <div class="col-md-4 mb-4">
-                <div class="card">
-                    <img src="{{ url_for('static', filename='imagens/curso-de-marketing.jpg') }}" class="card-img-top" alt="Curso 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Curso de Marketing</h5>
-                        <p class="card-text">Descrição do curso de marketing.</p>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cursoModal">Saiba Mais</button>
-                    </div>
+
+            <!-- Curso 3 -->
+            <div class="card bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="{{ url_for('static', filename='imagens/curso-de-marketing.jpg') }}" 
+                    class="card-img-top w-full h-64 object-cover" 
+                    alt="Curso de Marketing">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Curso de Marketing</h3>
+                    <p class="text-gray-600 mb-4">Descrição completa do curso de marketing.</p>
+                    <button onclick="openModal('Curso de Marketing', 'Detalhes completos do curso de marketing.')" 
+                            class="btn-primary bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                        Saiba Mais
+                    </button>
                 </div>
             </div>
         </div>
     </main>
 
-    <div class="modal fade" id="cursoModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Detalhes do Curso</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    Informações detalhadas sobre o curso.
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer class="footer bg-light text-center py-3">
-        <div class="container">
-            <p class="mb-0"><strong>Todos os direitos reservados</strong></p>
+    <!-- Rodapé -->
+    <footer class="bg-gray-800 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-        })
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+        
+        function toggleNavbar() {
+            const navbar = document.querySelector('.navbar-nav');
+            navbar.classList.toggle('hidden');
+        }
+
+        function openModal(title, content) {
+            // Implementar a lógica para abrir um modal com o título e conteúdo fornecidos
+            alert(title + ': ' + content);
+        }
+
+        class Carousel {
+        constructor(carouselElement) {
+            this.carouselElement = carouselElement;
+            this.items = carouselElement.querySelectorAll('.carousel-item');
+            this.indicators = carouselElement.querySelectorAll('.carousel-indicator');
+            this.prevButton = carouselElement.querySelector('#prevSlide');
+            this.nextButton = carouselElement.querySelector('#nextSlide');
+            
+            this.currentSlide = 0;
+            this.totalSlides = this.items.length;
+
+            this.initEventListeners();
+            this.startAutoPlay();
+        }
+
+        initEventListeners() {
+            this.prevButton.addEventListener('click', () => this.prevSlide());
+            this.nextButton.addEventListener('click', () => this.nextSlide());
+
+            this.indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => this.goToSlide(index));
+            });
+        }
+
+        nextSlide() {
+            this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+            this.updateCarousel();
+        }
+
+        prevSlide() {
+            this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+            this.updateCarousel();
+        }
+
+        goToSlide(slideIndex) {
+            this.currentSlide = slideIndex;
+            this.updateCarousel();
+        }
+
+        updateCarousel() {
+            // Remover classe active de todos os slides e indicadores
+            this.items.forEach(item => item.classList.remove('active'));
+            this.indicators.forEach(indicator => indicator.classList.remove('bg-blue-500'));
+
+            // Adicionar classe active ao slide atual
+            this.items[this.currentSlide].classList.add('active');
+            this.indicators[this.currentSlide].classList.add('bg-blue-500');
+        }
+
+        startAutoPlay() {
+            this.autoPlayInterval = setInterval(() => {
+                this.nextSlide();
+            }, 3000); // Muda a cada 3 segundos
+        }
+
+        stopAutoPlay() {
+            clearInterval(this.autoPlayInterval);
+        }
+    }
+
+    // Inicializar o carrossel quando o DOM estiver carregado
+    document.addEventListener('DOMContentLoaded', () => {
+        const mainCarousel = document.getElementById('mainCarousel');
+        const carousel = new Carousel(mainCarousel);
+
+        // Parar autoplay quando o mouse estiver sobre o carrossel
+        mainCarousel.addEventListener('mouseenter', () => carousel.stopAutoPlay());
+        mainCarousel.addEventListener('mouseleave', () => carousel.startAutoPlay());
+    });
     </script>
 </body>
 </html>

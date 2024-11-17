@@ -43,7 +43,9 @@ class Contato(db.Model):
     nome = db.Column(db.String(100), nullable=False)
     email = db.Column(db.String(100), nullable=False)
     mensagem = db.Column(db.String(200), nullable=False)
-    data_criacao = db.Column(db.DateTime, default=lambda: datetime.now(pytz.timezone('America/Sao_Paulo')))
+    data_criacao = db.Column(
+        db.DateTime, default=lambda: datetime.now(pytz.timezone("America/Sao_Paulo"))
+    )
 
     def __repr__(self):
         return f"<Contato {self.nome}>"
@@ -52,8 +54,6 @@ class Contato(db.Model):
 # Criar o banco de dados
 with app.app_context():
     db.create_all()
-
-# Rotas anteriores mantidas...
 
 
 # Rota de Contato com método POST
