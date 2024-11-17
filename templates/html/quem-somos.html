@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/quem-somos.css') }}" />
+    <title>Quem Somos</title>
+</head>
+<body>
+    <header class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='imagens/logo.png') }}" alt="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                 <nav class="navbar-nav ms-auto">
+                    <a class="nav-link" href="{{ url_for('home') }}" data-bs-toggle="tooltip" title="Página Inicial">Home</a>
+                    <a class="nav-link" href="{{ url_for('quem_somos') }}" data-bs-toggle="tooltip" title="Sobre nossa instituição">Quem somos</a>
+                    <a class="nav-link" href="{{ url_for('contato') }}" data-bs-toggle="tooltip" title="Entre em contato">Contato</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <h1 class="mb-4">Quem Somos</h1>
+        
+        <section class="mb-5">
+            <h2>Descrição Institucional</h2>
+            <p>A nossa universidade é uma instituição de ensino superior moderna e inovadora, dedicada a preparar profissionais para os desafios do mercado digital contemporâneo. Com uma abordagem centrada no aluno, oferecemos um ambiente de aprendizado estimulante, onde a teoria se encontra com a prática.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Missão</h2>
+            <p>Formar profissionais capacitados, críticos e criativos, prontos para transformar ideias em soluções impactantes nos campos de tecnologia, design e marketing digital. Acreditamos que a educação deve ser um motor de mudança e inovação.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Visão</h2>
+            <p>Ser reconhecida como uma referência nacional na formação de profissionais inovadores, conectados com as tendências globais e comprometidos com a excelência. Buscamos constantemente a melhoria de nossos programas acadêmicos.</p>
+        </section>
+
+        <section class="mb-5">
+            <h2>Valores</h2>
+            <ul>
+                <li>Inovação constante</li>
+                <li>Criatividade como diferencial</li>
+                <li>Formação prática e aplicada</li>
+                <li>Ética profissional</li>
+                <li>Desenvolvimento humano e tecnológico</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Diferenciais</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul>
+                        <li>Cursos alinhados com o mercado</li>
+                        <li>Infraestrutura tecnológica moderna</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul>
+                        <li>Corpo docente qualificado</li>
+                        <li>Metodologias de ensino dinâmicas</li>
+                        <li>Foco em desenvolvimento de competências práticas</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer bg-light text-center py-3">
+        <div class="container">
+            <p class="mb-0"><strong>Todos os direitos reservados</strong></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+    </script>
+</body>
+</html>
